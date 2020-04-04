@@ -1,0 +1,16 @@
+{
+  "name": "vue-role",
+  "version": "1.0.0",
+  "description": "Vue.js plugin for manage roles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vuejs",
+    "roles",
+    "plugin"
+  ],
+  "author": "Javier Alcantara",
+  "license": "ISC"
+}
