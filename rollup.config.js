@@ -1,8 +1,8 @@
 import { terser } from 'rollup-plugin-terser'
 import vue from 'rollup-plugin-vue'
-import typescript from 'rollup-plugin-typescript'
+import typescript from 'rollup-plugin-typescript2'
 
-const INPUT_FILE = './index.ts'
+const INPUT_FILE = './src/index.ts'
 const EXPORT_FOLDER = '.dist'
 const EXPORT_FILE_NAME = 'vue-role'
 
@@ -15,15 +15,10 @@ const COMMON_CONFIG = {
   external: ['vue'],
   plugins: [
     typescript({
-      tsconfig: false,
-      experimentalDecorators: true,
-      module: 'es2015'
+      tsconfig: 'tsconfig.json',
+      useTsconfigDeclarationDir: true,
     }),
     vue(),
-    // commonjs(),
-    // babel({
-    //   exclude: 'node_modules/**'
-    // })
   ]
 }
 
@@ -31,7 +26,7 @@ const PRODUCTION_CONFIG = {
   ...COMMON_CONFIG,
   output: {
     ...COMMON_CONFIG.output,
-    file: '.dist/vue-role.min.js'
+    file: `${ EXPORT_FOLDER }/${ EXPORT_FILE_NAME }.min.js`
   },
   plugins: [
     ...COMMON_CONFIG.plugins,
