@@ -8,10 +8,13 @@ import { Route } from 'vue-router'
 class VueRoleManagerPlugin implements PluginObject<PluginOptions> {
   public install(vm: VueConstructor, options: PluginOptions) {
 
-    vm.$roleManager = new RoleManager()
+    vm.$roleManager = new RoleManager(options)
 
     vm.$router.beforeEach((to: Route, from: Route, next: Function) => {
-      to.meta.authorize
+      if (!to.meta.authorize) next()
+      const haveAuthorization = vm.$roleManager.checkRole(to.meta.authorize)
+
+      if (haveAuthorization) next()
     })
   }
 }

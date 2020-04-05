@@ -1,3 +1,3 @@
 export default interface PluginOptions {
-  name: string
+  roles: string[]
 }
